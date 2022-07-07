@@ -71,6 +71,6 @@ public class Sale {
 				+ items + ", " 
 				+ String.format("%.2f", total) 
 				+ ", pm = " 
-				+ String.format(".2f", averagePrice());  
+				+ String.format("%.2f", averagePrice());  
 	}
 }

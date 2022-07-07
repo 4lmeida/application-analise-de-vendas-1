@@ -9,6 +9,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import entities.Sale;
 
@@ -41,11 +42,33 @@ public class Program {
 			System.out.println();
 			System.out.println("Cinco primeiras vendas de 2016 de maior preco medio");
 			
-			Comparator<Double> comp
+			Comparator<Sale> comp = (s1, s2) -> s1.averagePrice().compareTo(s2.averagePrice());
 			
-			List<Sale> pm = list.stream().filter(x -> x.getYear() == 2016).map(x -> x.averagePrice()).sorted(null); 
+			List<Sale> listUpdate = list.stream()
+						.filter(x -> x.getYear() == 2016)
+						.sorted(comp.reversed())
+						.limit(5)
+						.collect(Collectors.toList());
+			
+			listUpdate.forEach(System.out::println);
+			
+			System.out.println();
 			
 			
+			double sum1 = list.stream()
+					.filter(x -> x.getSeller() == "logan")
+					.filter(x -> x.getMonth() == 1)
+					.map(x -> x.getTotal())
+					.reduce(0.0, (x, y) -> x + y);
+					
+			double sum7 = list.stream()
+					.filter(x -> x.getSeller() == "logan")
+					.filter(x -> x.getMonth() == 7)
+					.map(x -> x.getTotal())
+					.reduce(0.0, (x, y) -> x + y);
+					
+			
+			System.out.println("valor total vendido pelo vendedor Logan nos meses 1 e 7 = " + String.format("%.2f", sum1 + sum7));
 			
 		}
 		catch(IOException e) {

@@ -56,19 +56,20 @@ public class Program {
 			
 			
 			double sum1 = list.stream()
-					.filter(x -> x.getSeller() == "logan")
+					.filter(x -> x.getSeller().charAt(0) == 'L')
 					.filter(x -> x.getMonth() == 1)
 					.map(x -> x.getTotal())
 					.reduce(0.0, (x, y) -> x + y);
 					
 			double sum7 = list.stream()
-					.filter(x -> x.getSeller() == "logan")
+					.filter(x -> x.getSeller().charAt(0) == 'L')
 					.filter(x -> x.getMonth() == 7)
 					.map(x -> x.getTotal())
 					.reduce(0.0, (x, y) -> x + y);
 					
 			
-			System.out.println("valor total vendido pelo vendedor Logan nos meses 1 e 7 = " + String.format("%.2f", sum1 + sum7));
+			System.out.println("Valor total vendido pelo vendedor Logan nos meses 1 e 7 = " 
+					+ String.format("%.2f", sum1 + sum7));
 			
 		}
 		catch(IOException e) {
